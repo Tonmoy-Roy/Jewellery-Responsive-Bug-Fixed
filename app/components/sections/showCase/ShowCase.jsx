@@ -1,25 +1,22 @@
 import React from "react";
 import Image from "next/image";
-
-export default function ShowCase(){
-    return (
-      <section className="w-full">
-        <div className="w-full max-h-[652px] flex items-stretch justify-center">
-          <Image
-            src="/images/Rectangle4.png"
-            alt="Product showcase left"
-            width={666}
-            height={652}
-            className="w-1/2 block"
-          />
-          <Image
-            src="/images/Rectangle6.png"
-            alt="Product showcase right"
-            width={666}
-            height={652}
-            className="w-1/2 block"
-          />
-        </div>
-      </section>
-    );
+import Rectangle4 from '../../../../public/images/Rectangle4.png'
+import Rectangle6  from '../../../../public/images/Rectangle6.png'
+export default function ShowCase() {
+  return (
+    <section>
+      <div className="md:flex">
+        <Image
+          src={Rectangle4}
+          alt="Product showcase left"
+          className="md:w-[50vw]"
+        />
+        <Image
+          src={Rectangle6}
+          alt="Product showcase right"
+          className="md:w-[50vw]"
+        />
+      </div>
+    </section>
+  );
 }
