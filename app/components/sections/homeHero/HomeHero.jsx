@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import banner from '../../../../public/images/Rectangle3.png'
-
 export default function HomeHero() {
   return (
-    <section className="">
+    <section>
       <Image
         src={banner}
         alt="Hero background"
@@ -16,13 +15,11 @@ export default function HomeHero() {
             <p className="md:w-[9vw] ">UI UX Design</p>
             <p>Web Design</p>
           </div>
-          <div className="">
+          <div>
             <p>I have designed the website with a premium and elegant aesthetic to reflect Shrinath Jewels' brand identity highlighting its craftsmanship, timeless appeal, and commitment to quality in every detail.</p>
           </div>
         </div>
       </div>
-
-
     </section>
   );
 }
