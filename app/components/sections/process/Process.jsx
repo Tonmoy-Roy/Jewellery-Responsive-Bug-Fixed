@@ -1,19 +1,69 @@
+"use client"
+
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function Process() {
+  const steps = [
+    { num: "01", title: "Discovery" },
+    { num: "02", title: "UX Design" },
+    { num: "03", title: "UI Design" },
+    { num: "04", title: "Implementation" },
+  ];
+
+  const descriptions = [
+    // Discovery
+    [
+      { text: "Conducted client interviews", bold: true, rest: " to understand the brand vision, target audience, and product range." },
+      { text: "Analyzed competitors and market trends", bold: true, rest: " to identify opportunities." },
+      { text: "Defined user needs, goals, and pain points", bold: true, rest: " to inform the design direction." },
+    ],
+    // UX Design
+    [
+      { text: "Created user personas", bold: true, rest: " representing both everyday buyers and premium/wedding customers." },
+      { text: "Prioritized usability, accessibility, and information hierarchy", bold: true, rest: " to enhance the shopping experience." },
+    ],
+    // UI Design
+    [
+      { text: "Designed a premium, elegant visual language", bold: true, rest: " aligned with brand identity — color palette, typography, and imagery." },
+      { text: "cohesive design system", bold: true, rest: " for consistency across the website.", prefix: "Ensured a " },
+    ],
+    // Implementation
+    [
+      { text: "Tested interactions and visuals across devices.", bold: false },
+      { text: "Launched a polished digital presence reflecting Shrinath Jewels' luxury and craftsmanship.", bold: false },
+    ],
+  ];
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      x: -100
+    },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
     <section className="w-full bg-[#1e1e1ebf] py-10 md:py-20">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* === STEP HEADINGS === */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          {[
-            { num: "01", title: "Discovery" },
-            { num: "02", title: "UX Design" },
-            { num: "03", title: "UI Design" },
-            { num: "04", title: "Implementation" },
-          ].map((step, i) => (
-            <div
+          {steps.map((step, i) => (
+            <motion.div
               key={i}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={cardVariants}
               className="relative flex flex-col items-start justify-end h-[80px] sm:h-[90px] md:h-[100px]"
             >
               <span className="text-[28px] sm:text-[36px] md:text-[40px] font-bold italic text-[#ffffff4c] font-['Arimo_Hebrew_Subset_Italic'] absolute top-0 left-0">
@@ -22,7 +72,7 @@ export default function Process() {
               <h3 className="text-[22px] sm:text-[26px] md:text-[30px] font-bold italic text-white font-['Arimo_Hebrew_Subset'] absolute bottom-0 left-10 whitespace-nowrap">
                 {step.title}
               </h3>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -36,66 +86,31 @@ export default function Process() {
 
         {/* === STEP DESCRIPTIONS === */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {/* Discovery */}
-          <ol className="list-decimal pl-4 space-y-2 text-white text-[14px] leading-[24px] font-['Roboto']">
-            <li>
-              <span className="font-medium">Conducted client interviews</span>{" "}
-              to understand the brand vision, target audience, and product
-              range.
-            </li>
-            <li>
-              <span className="font-medium">
-                Analyzed competitors and market trends
-              </span>{" "}
-              to identify opportunities.
-            </li>
-            <li>
-              <span className="font-medium">
-                Defined user needs, goals, and pain points
-              </span>{" "}
-              to inform the design direction.
-            </li>
-          </ol>
-
-          {/* UX Design */}
-          <ol className="list-decimal pl-4 space-y-2 text-white text-[14px] leading-[24px] font-['Roboto']">
-            <li>
-              <span className="font-medium">Created user personas</span>{" "}
-              representing both everyday buyers and premium/wedding customers.
-            </li>
-            <li>
-              <span className="font-medium">
-                Prioritized usability, accessibility, and information
-                hierarchy
-              </span>{" "}
-              to enhance the shopping experience.
-            </li>
-          </ol>
-
-          {/* UI Design */}
-          <ol className="list-decimal pl-4 space-y-2 text-white text-[14px] leading-[24px] font-['Roboto']">
-            <li>
-              <span className="font-medium">
-                Designed a premium, elegant visual language
-              </span>{" "}
-              aligned with brand identity — color palette, typography, and
-              imagery.
-            </li>
-            <li>
-              Ensured a{" "}
-              <span className="font-medium">cohesive design system</span> for
-              consistency across the website.
-            </li>
-          </ol>
-
-          {/* Implementation */}
-          <ol className="list-decimal pl-4 space-y-2 text-white text-[14px] leading-[24px] font-['Roboto']">
-            <li>Tested interactions and visuals across devices.</li>
-            <li>
-              Launched a polished digital presence reflecting Shrinath Jewels’
-              luxury and craftsmanship.
-            </li>
-          </ol>
+          {descriptions.map((desc, i) => (
+            <motion.ol
+              key={i}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={cardVariants}
+              className="list-decimal pl-4 space-y-2 text-white text-[14px] leading-[24px] font-['Roboto']"
+            >
+              {desc.map((item, j) => (
+                <li key={j}>
+                  {item.prefix && item.prefix}
+                  {item.bold ? (
+                    <>
+                      <span className="font-medium">{item.text}</span>
+                      {item.rest}
+                    </>
+                  ) : (
+                    item.text
+                  )}
+                </li>
+              ))}
+            </motion.ol>
+          ))}
         </div>
 
         <div className="col-span-4 row-span-3 row-start-4">

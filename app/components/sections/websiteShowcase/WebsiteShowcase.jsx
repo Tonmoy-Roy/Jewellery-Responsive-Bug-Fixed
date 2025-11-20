@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Rectangle14 from '../../../../public/images/Rectangle14.png'
 import Rectangle15 from '../../../../public/images/Rectangle15.png'
 import Footer from "../../layout/footer/Footer";
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -370,7 +369,7 @@ export default function WebsiteShowcase() {
         </div>
 
         {/* Contact Section */}
-        <div className="w-full max-w-[1080px] bg-[#444343] flex flex-col lg:flex-row overflow-hidden">
+        <div className="w-full max-w-[1080px] bg-[#444343] flex flex-col lg:flex-row overflow-hidden slide-up">
           <div className="w-full lg:w-[450px] h-[300px] lg:h-[400px] relative">
             <Image
               src="/images/Group3.png"

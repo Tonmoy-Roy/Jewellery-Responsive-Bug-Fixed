@@ -9,12 +9,12 @@ export default function ShowCase() {
         <Image
           src={Rectangle4}
           alt="Product showcase left"
-          className="md:w-[50vw]"
+          className="md:w-[50vw] slide-in-left"
         />
         <Image
           src={Rectangle6}
           alt="Product showcase right"
-          className="md:w-[50vw]"
+          className="md:w-[50vw] slide-in-right"
         />
       </div>
     </section>

@@ -26,13 +26,13 @@ export default function TargetAudience() {
       </div>
       {/* Heading */}
       <div className="w-full xl:max-w-[1440px] mx-auto md:flex mb-12 lg:mb-12 px-4 md:px-44">
-        <h2 className="text-[42px] sm:text-[50px] md:text-[65px] lg:text-[75px] xl:text-[90px] font-bold italic leading-tight tracking-wide text-[#1e1e1eb2] font-['Arimo_Hebrew_Subset_Italic'] mb-6 xl:mb-0">
+        <h2 className="text-[42px] sm:text-[50px] md:text-[65px] lg:text-[75px] xl:text-[90px] font-bold italic leading-tight tracking-wide text-[#1e1e1eb2] font-['Arimo_Hebrew_Subset_Italic'] mb-6 xl:mb-0 slide-in-left">
           Target <br />
           Audience
         </h2>
 
         <div className="xl:flex xl:flex-col justify-center xl:mt-10 xl:ml-12 md:mt-0 md:ml-0">
-          <p className="text-[18px] sm:text-[20px] lg:text-[23px] leading-relaxed text-[#1e1e1eaf] font-['Inter']">
+          <p className="text-[18px] sm:text-[20px] lg:text-[23px] leading-relaxed text-[#1e1e1eaf] font-['Inter'] ">
             Since Shrinath Jewels caters to both everyday jewellery buyers and
             wedding / premium buyers, here's how you can present your user
             personas, including shopping behaviour, pain points, and goals for
@@ -48,7 +48,7 @@ export default function TargetAudience() {
           {/* Persona Row */}
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Persona 1 */}
-            <div className="flex-1 p-4">
+            <div className="flex-1 p-4 slide-up">
               <h3 className="text-[20px] font-bold leading-[24px] text-black font-['Roboto']">
                 Purva, 28
               </h3>
@@ -96,7 +96,7 @@ export default function TargetAudience() {
             </div>
 
             {/* Persona 2 */}
-            <div className="flex-1 p-4">
+            <div className="flex-1 p-4 slide-down">
               <h3 className="text-[20px] font-bold leading-[24px] text-black font-['Roboto']">
                 Anvita, 23
               </h3>
@@ -145,7 +145,7 @@ export default function TargetAudience() {
         </div>
 
         {/* Right Column: Goals */}
-        <div className="lg:w-[50%] flex flex-col items-start gap-6">
+        <div className="lg:w-[50%] flex flex-col items-start gap-6 slide-up">
           <h3 className="text-[20px] font-normal leading-[24px] text-black font-['Roboto']">
             Goal
           </h3>

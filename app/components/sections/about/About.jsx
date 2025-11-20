@@ -1,10 +1,26 @@
-import React from "react";
-
+'use client'
+import React, { useEffect } from "react";
 export default function About() {
+  useEffect(() => {
+    const elements = document.querySelectorAll(".slide-in-left, .slide-in-right, .fade-in, .fade-out, .slide-up, .slide-down ");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <section className="md:h-[65vh] bg-[#1E1E1E] flex items-center justify-center p-5">
       <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-center gap-8 mx-auto md:w-[62.5vw] w-90">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic leading-tight text-white font-[Arimo Hebrew Subset Italic]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic leading-tight text-white font-[Arimo Hebrew Subset Italic] slide-in-left">
           About
         </h1>
         <div className="w-full lg:w-[70%] text-center md:text-left">
