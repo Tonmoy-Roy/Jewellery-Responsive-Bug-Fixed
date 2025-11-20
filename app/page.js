@@ -1,4 +1,3 @@
-import Image from "next/image";
 import HomeHero from "./components/sections/homeHero/HomeHero";
 import About from "./components/sections/about/About";
 import TargetAudience from "./components/sections/targetAudience/TargetAudience";

@@ -6,7 +6,6 @@ import recatangle1 from '../../../../public/images/Rectangle1.png'
 export default function TargetAudience() {
   return (
     <section className="w-full min-h-screen relative flex flex-col items-start justify-start px-4 sm:px-6 lg:px-16 py-12 lg:py-24">
-      {/* Background Image - Rectangle1.png (full cover) */}
       <Image
         src={recatangle1}
         alt="Background"
@@ -16,7 +15,6 @@ export default function TargetAudience() {
         quality={90}
       />
 
-      {/* Large "SJ" Watermark - positioned at bottom right */}
       <div className="absolute bottom-0 right-0 w-[60%] sm:w-[50%] lg:w-[45%] xl:w-[40%] h-auto aspect-square  -z-5">
         <Image
           src={download1}
