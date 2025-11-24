@@ -1,7 +1,7 @@
 'use client'
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import Rectangle14 from '../../../../public/images/Rectangle14.png'
 import Rectangle15 from '../../../../public/images/Rectangle15.png'
 import Footer from "../../layout/footer/Footer";
@@ -42,6 +42,83 @@ const legacyItemSlideInVariants = {
 const legacyTextFadeInVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const ROTATION_RANGE = 25;
+
+const TiltImageCard = ({ src, alt }) => {
+  const ref = useRef(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const xSpring = useSpring(x, { stiffness: 400, damping: 40 });
+  const ySpring = useSpring(y, { stiffness: 400, damping: 40 });
+
+  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const rY = (mouseX / rect.width - 0.5) * ROTATION_RANGE;
+    const rX = (mouseY / rect.height - 0.5) * ROTATION_RANGE * -1;
+    x.set(rX);
+    y.set(rY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <div className="perspective-1000"> 
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transformStyle: "preserve-3d",
+          transform,
+        }}
+        className="relative flex-shrink-0 cursor-pointer group tilt-preserve"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      >
+        <div className="absolute -inset-1 rounded-lg blur opacity-0 group-hover:opacity-60 transition duration-500 pointer-events-none" />
+
+        <div
+          className="relative rounded-lg overflow-hidden shadow-2xl bg-gray-100"
+          style={{
+            transform: "translateZ(40px)",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            width={162}
+            height={191}
+            className="object-cover w-full h-full rounded-lg block"
+            style={{
+              transform: "translateZ(30px)",
+            }}
+          />
+
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%)",
+              transform: "translateZ(60px)",
+            }}
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
 };
 
 export default function WebsiteShowcase() {
@@ -325,23 +402,16 @@ export default function WebsiteShowcase() {
                     →
                   </button>
                 </div>
-                <div className="relative w-full overflow-hidden">
-                  <div
-                    id="collection-scroll"
-                    className="flex gap-2 overflow-x-scroll scroll-smooth no-scrollbar"
-                  >
+                <div className="relative w-full">
+                  <div id="collection-scroll" className="flex gap-4 py-8 overflow-x-scroll scroll-smooth no-scrollbar px-4">
                     {collection.map((item, index) => (
-                      <Image
-                        key={index}
-                        src={item}
-                        alt={`Collection ${index + 1}`}
-                        width={162}
-                        height={191}
-                        className="object-cover flex-shrink-0 rounded-lg"
-                      />
+                      <div key={index} className="min-w-[180px]"> {/* keep width so mouseover area is correct */}
+                        <TiltImageCard src={item} alt={`Collection ${index + 1}`} />
+                      </div>
                     ))}
                   </div>
                 </div>
+
               </div>
             </div>
 
