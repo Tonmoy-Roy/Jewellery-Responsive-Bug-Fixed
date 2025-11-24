@@ -152,7 +152,7 @@ export default function WebsiteShowcase() {
       <Image
         src={Rectangle14}
         alt="Background"
-        className="md:w-screen object-cover object-center -z-10 h-[800vh] md:h-[400vh]"
+        className="md:w-screen object-cover object-center -z-10 h-[850vh] md:h-[430vh]"
       />
 
       <div className="absolute inset-0 w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 lg:py-[184px] flex flex-col items-center">
@@ -290,7 +290,7 @@ export default function WebsiteShowcase() {
 
 
         {/* Products Section */}
-        <div className=" relative w-full max-w-[1080px] flex flex-col items-center justify-start bg-white">
+        <div className=" relative w-full max-w-[1080px] flex flex-col items-center justify-start bg-white md:h-[220vh]">
           <Image
             src="/images/unnamed10.png"
             alt="Section Background"
@@ -439,7 +439,7 @@ export default function WebsiteShowcase() {
         </div>
 
         {/* Contact Section */}
-        <div className="w-full max-w-[1080px] bg-[#444343] flex flex-col lg:flex-row overflow-hidden slide-up">
+        <div className="w-full max-w-[1080px] bg-[#444343] flex flex-col lg:flex-row overflow-hidden">
           <div className="w-full lg:w-[450px] h-[300px] lg:h-[400px] relative">
             <Image
               src="/images/Group3.png"
