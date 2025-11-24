@@ -1,8 +1,60 @@
 "use client"
-
 import React from "react";
 import { motion } from "framer-motion";
+const DURATION = 0.25;
+const STAGGER = 0.025;
 
+const FlipText = ({ children, className = "" }) => {
+  return (
+    <motion.span
+      initial="initial"
+      whileHover="hovered"
+      className={`relative block overflow-hidden ${className}`} 
+    >
+      <div className="relative">
+        {children.split("").map((l, i) => (
+          <motion.span
+            key={`top-${i}`}
+            variants={{
+              initial: { y: 0 },
+              hovered: { y: "-100%" },
+            }}
+            transition={{
+              duration: DURATION,
+              ease: "easeInOut",
+              delay: STAGGER * i,
+            }}
+            className="inline-block"
+            style={{ display: "inline-block" }}
+          >
+            {l === " " ? "\u00A0" : l}
+          </motion.span>
+        ))}
+      </div>
+
+      <div className="absolute inset-0">
+        {children.split("").map((l, i) => (
+          <motion.span
+            key={`bottom-${i}`}
+            variants={{
+              initial: { y: "110%" },   
+              hovered: { y: 0 },
+            }}
+            transition={{
+              duration: DURATION,
+              ease: "easeInOut",
+              delay: STAGGER * i,
+            }}
+            className="inline-block"
+            style={{ display: "inline-block" }}
+          >
+            {l === " " ? "\u00A0" : l}
+          </motion.span>
+        ))}
+      </div>
+    </motion.span>
+  );
+};
 export default function Process() {
   const steps = [
     { num: "01", title: "Discovery" },
@@ -12,23 +64,19 @@ export default function Process() {
   ];
 
   const descriptions = [
-    // Discovery
     [
       { text: "Conducted client interviews", bold: true, rest: " to understand the brand vision, target audience, and product range." },
       { text: "Analyzed competitors and market trends", bold: true, rest: " to identify opportunities." },
       { text: "Defined user needs, goals, and pain points", bold: true, rest: " to inform the design direction." },
     ],
-    // UX Design
     [
       { text: "Created user personas", bold: true, rest: " representing both everyday buyers and premium/wedding customers." },
       { text: "Prioritized usability, accessibility, and information hierarchy", bold: true, rest: " to enhance the shopping experience." },
     ],
-    // UI Design
     [
       { text: "Designed a premium, elegant visual language", bold: true, rest: " aligned with brand identity — color palette, typography, and imagery." },
       { text: "cohesive design system", bold: true, rest: " for consistency across the website.", prefix: "Ensured a " },
     ],
-    // Implementation
     [
       { text: "Tested interactions and visuals across devices.", bold: false },
       { text: "Launched a polished digital presence reflecting Shrinath Jewels' luxury and craftsmanship.", bold: false },
@@ -54,7 +102,6 @@ export default function Process() {
   return (
     <section className="w-full bg-[#1e1e1ebf] py-10 md:py-20">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* === STEP HEADINGS === */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {steps.map((step, i) => (
             <motion.div
@@ -76,7 +123,6 @@ export default function Process() {
           ))}
         </div>
 
-        {/* === PROGRESS BARS === */}
         <div className="flex flex-col items-end space-y-3 mb-10 pr-[8%]">
           <div className="w-full h-[10px] bg-[#d9d9d9]"></div>
           <div className="w-[72%] h-[10px] bg-[#d9d9d9]"></div>
@@ -84,7 +130,6 @@ export default function Process() {
           <div className="w-[17%] h-[10px] bg-[#d9d9d9]"></div>
         </div>
 
-        {/* === STEP DESCRIPTIONS === */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {descriptions.map((desc, i) => (
             <motion.ol
@@ -116,77 +161,72 @@ export default function Process() {
         <div className="col-span-4 row-span-3 row-start-4">
           <div className="relative w-full h-auto md:h-[400px] lg:h-[424px] flex flex-col md:flex-col items-start md:items-end mt-6 lg:mt-10">
 
-            {/* Mobile Layout (stacked) */}
-            <div className="flex flex-col gap-4 md:hidden px-2">
+            <div className="flex flex-col gap-10 md:hidden px-2">
 
-              {/* Med */}
-              <h3 className="text-4xl font-semibold text-[#ffffff4c] leading-tight">
-                Med
-                <br />^^
+              <h3 className="text-5xl sm:text-6xl font-semibold text-[#ffffff4c] leading-tight ">
+                <FlipText>Med</FlipText>
+                <br />
+                <FlipText>^^</FlipText>
               </h3>
 
-              {/* Instrumental Serif */}
-              <div>
-                <h3 className="text-4xl font-semibold text-[#ffffff4c] leading-tight">
-                  Instrumental
+              <div className="space-y-[-8px]">
+                <h3 className="text-5xl sm:text-6xl font-semibold text-[#ffffff4c] leading-tight">
+                  <FlipText>Instrumental</FlipText>
                 </h3>
-                <h3 className="text-4xl font-semibold text-[#ffffff4c] leading-tight mt-[-6px]">
-                  Serif
+                <h3 className="text-5xl sm:text-6xl font-semibold text-[#ffffff4c] leading-tight">
+                  <FlipText>Serif</FlipText>
                 </h3>
               </div>
 
-              {/* abcdefg> */}
-              <h3 className="text-4xl font-semibold text-[#ffffff4c] leading-tight">
-                abcdefg&gt;
+              <h3 className="text-5xl sm:text-6xl font-semibold text-[#ffffff4c] leading-tight">
+                <FlipText>abcdefg&gt;</FlipText>
               </h3>
 
-              {/* Raleway */}
-              <div>
-                <h3 className="text-4xl font-semibold text-white leading-tight">
-                  Raleway <br /> Bold
+              <div className="space-y-1">
+                <h3 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
+                  <FlipText>Raleway Bold</FlipText>
                 </h3>
                 <h3 className="text-4xl font-normal text-[#ffffffbc] leading-tight">
-                  Regular @9*
+                  <FlipText>Regular @9*</FlipText>
                 </h3>
               </div>
             </div>
 
-            {/* ---------------- PC/LARGE SCREEN LAYOUT ---------------- */}
             <div className="hidden md:block">
 
-              {/* Med */}
-              <div className="absolute left-4 bottom-4">
+              <div className="absolute left-4 bottom-[-50]">
                 <h3 className="text-7xl lg:text-[96px] font-semibold leading-tight text-[#ffffff4c]">
-                  Med
-                  <br />^^
+                  <FlipText className="mb-10">Med</FlipText>
+                  <FlipText>^^</FlipText>
                 </h3>
               </div>
 
-              {/* Instrumental / Serif */}
               <div className="absolute right-0 top-0 p-2">
-                <h3 className="text-7xl lg:text-[96px] font-semibold leading-tight text-[#ffffff4c]">
-                  Instrumental
+                <h3 className="text-7xl lg:text-[96px] font-semibold leading-tight text-[#ffffff4c] ">
+                  <FlipText>Instrumental</FlipText>
                 </h3>
-                <h3 className="text-7xl lg:text-[96px] font-semibold leading-tight text-[#ffffff4c] mt-[-12px] mr-3">
-                  Serif
+                
+                <h3 className="text-7xl lg:text-[96px] font-semibold leading-tight text-[#ffffff4c] mr-3 text-right">
+                  <FlipText>Serif</FlipText>
                 </h3>
               </div>
 
-              {/* abcdefg> */}
               <h3 className="absolute top-2 left-2 text-7xl lg:text-[96px] font-semibold text-[#ffffff4c] leading-tight">
-                abcdefg&gt;
+                <FlipText>abcdefg&gt;</FlipText>
               </h3>
 
-              {/* Raleway */}
               <div className="absolute top-[110px] left-[140px] lg:top-[131px] lg:left-[280px]">
-                <h3 className="text-6xl lg:text-[90px] font-semibold text-white leading-snug">
-                  Raleway <br /> Bold
+                <h3 className="text-3xl md:text-8xl font-semibold text-white leading-snug mb-5 md:h-[15vh]">
+                  <FlipText>Raleway</FlipText>
                 </h3>
+                <h3 className="text-6xl lg:text-[90px] font-semibold text-white leading-snug">
+                  <FlipText>Bold</FlipText>
+                </h3>
+
                 <h3 className="text-6xl lg:text-[90px] font-normal text-[#ffffffbc] leading-snug">
-                  Regular @9*
+                  <FlipText>Regular @9*</FlipText>
                 </h3>
               </div>
-
             </div>
           </div>
         </div>

@@ -81,7 +81,7 @@ export default function WebsiteShowcase() {
       <div className="absolute inset-0 w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 lg:py-[184px] flex flex-col items-center">
 
         {/* Background Image for Hero */}
-        <div className="relative flex justify-center items-center border border-amber-600 ">
+        <div className="relative flex justify-center items-center">
           <p className="absolute top-2 left-2 text-sm sm:text-base text-white">
             ShrinathJewels
           </p>
@@ -89,7 +89,7 @@ export default function WebsiteShowcase() {
             <Image
               src={Rectangle15}
               alt="Hero Background"
-              className="w-full h-[99vh] sm:h-auto object-cover object-center border border-red-600 md:w-[70.2vw]"
+              className="w-full h-[99vh] sm:h-auto object-cover object-center md:w-[70.2vw]"
               priority
             />
           </div>
@@ -213,7 +213,7 @@ export default function WebsiteShowcase() {
 
 
         {/* Products Section */}
-        <div className="border border-green-600 relative w-full max-w-[1080px] flex flex-col items-center justify-start bg-white">
+        <div className=" relative w-full max-w-[1080px] flex flex-col items-center justify-start bg-white">
           <Image
             src="/images/unnamed10.png"
             alt="Section Background"
